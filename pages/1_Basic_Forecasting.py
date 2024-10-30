@@ -34,20 +34,39 @@ if uploaded_data is not None:
 
     prediction_column = st.selectbox('Select your Prediction column', list(df.columns))
 
+    unique_id_column = st.selectbox('Select your Unique ID (grouping) column', ["None"] + list(df.columns))
+
     number_of_predictions = st.number_input('How many timeframes do you want to predict?', 1, 100)
 
     if(st.button('Predict')):
-        # Forecast
-        forecast_df = nixtla_client.forecast(
-            df=df,
-            h=number_of_predictions,
-            time_col=time_column,
-            target_col=prediction_column,
-        )
+        if(unique_id_column == "None"):
+            df = df[[time_column, prediction_column]]
+            # Forecast
+            forecast_df = nixtla_client.forecast(
+                df=df,
+                h=number_of_predictions,
+                time_col=time_column,
+                target_col=prediction_column
+            )
+
+            df=df.tail(number_of_predictions*3)
+
+        else:
+            df = df[[time_column, prediction_column, unique_id_column]]
+            # Forecast
+            forecast_df = nixtla_client.forecast(
+                df=df,
+                h=number_of_predictions,
+                time_col=time_column,
+                target_col=prediction_column,
+                id_col=unique_id_column
+            )
+
+            df=df.groupby(unique_id_column).tail(number_of_predictions*3)
 
         # Plot predictions
         st.pyplot(nixtla_client.plot(
-            df=df.tail(number_of_predictions*3), forecasts_df=forecast_df, time_col=time_column, target_col=prediction_column
+            df=df, forecasts_df=forecast_df, time_col=time_column, target_col=prediction_column
         ))
 
     
