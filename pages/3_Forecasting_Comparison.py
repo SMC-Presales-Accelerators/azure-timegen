@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 from utilsforecast.losses import mae
 from utilsforecast.evaluation import evaluate
 
-from statsforecast import StatsForecast
-from statsforecast.models import CrostonClassic, CrostonOptimized, IMAPA, TSB
+#from statsforecast import StatsForecast
+#from statsforecast.models import CrostonClassic, CrostonOptimized, IMAPA, TSB
 
 load_dotenv()
 
