@@ -1,4 +1,9 @@
 pandas
+numba==0.60.0
+llvmlite==0.43.0
+utilsforecast
+statsforecast
+numpy
 streamlit
 nixtla
 matplotlib

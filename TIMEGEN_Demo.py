@@ -17,7 +17,7 @@ st.markdown(
 
     If you do not have a dataset to upload, you can use one of the following datasets:
       - [Air Passengers Dataset](https://raw.githubusercontent.com/Nixtla/transfer-learning-time-series/main/datasets/air_passengers.csv)
-      - [Electricity Consumption Dataset](https://raw.githubusercontent.com/Nixtla/transfer-learning-time-series/main/datasets/electricity_consumption.csv)
+      - [Multi-Store Sales Dataset](https://raw.githubusercontent.com/Nixtla/transfer-learning-time-series/refs/heads/main/datasets/m5_sales_exog_small.csv)
       - [Coffee Machine Usage Dataset](app/static/coffee_by_the_hour.csv)
 """
 )

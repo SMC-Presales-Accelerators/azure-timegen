@@ -45,24 +45,25 @@ if(st.button('Predict')):
 
         df.date = pd.to_datetime(df.date, unit='ms')
 
-        idx = pd.date_range(twoyears, yesterday)
+        #idx = pd.date_range(twoyears, yesterday)
 
-        df.index = pd.DatetimeIndex(df.date)
+        #df.index = pd.DatetimeIndex(df.date)
 
-        df = df.reindex(idx, method='pad')
+        #df = df.reindex(idx, method='pad')
 
-        df['date_refilled'] = df.index
+        #df['date_refilled'] = df.index
 
-        df = df.reset_index(drop=True)
+        #df = df.reset_index(drop=True)
 
-        df.date = df.date_refilled
+        #df.date = df.date_refilled
 
-        df = df.drop(columns=['date_refilled'])
+        #df = df.drop(columns=['date_refilled'])
 
         # st.dataframe(df)
 
         df_close = nixtla_client.forecast(
             df=df[['date', 'close']],
+            freq='B',
             h=7,
             time_col='date',
             target_col='close',
@@ -72,6 +73,7 @@ if(st.button('Predict')):
         
         df_open = nixtla_client.forecast(
             df=df[['date', 'open']],
+            freq='B',
             h=7,
             time_col='date',
             target_col='open',
@@ -81,6 +83,7 @@ if(st.button('Predict')):
 
         df_high = nixtla_client.forecast(
             df=df[['date', 'high']],
+            freq='B',
             h=7,
             time_col='date',
             target_col='high',
@@ -90,6 +93,7 @@ if(st.button('Predict')):
 
         df_low = nixtla_client.forecast(
             df=df[['date', 'low']],
+            freq='B',
             h=7,
             time_col='date',
             target_col='low',
